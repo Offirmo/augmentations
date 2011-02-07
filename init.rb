@@ -18,6 +18,7 @@ class ::Object
 	class << self
 		alias augment incorporate
 	end
+	
 end
 
 class ::Module
