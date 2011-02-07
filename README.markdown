@@ -76,7 +76,7 @@ Modules are still used, as described above, but the API is improved.
 Use *Augmentations* like:
 
     class User < ActiveRecord::Base
-      augment Shared::Pingable, PasswordResetExtension
+      incorporate Shared::Pingable, PasswordResetExtension
     end
   
 With modules like
@@ -101,13 +101,15 @@ With modules like
   
 What I like about this:
 
- * A new method, `augment`, is used, rather than abusing `include`.
+ * A new method, `incorporate`, is used, rather than abusing `include`.
 
  * Less boilerplate.
  
  * Keeps the code for class and instances together, looking just like it would do in the model. You could achieve this with `included` and `class_eval` as mentioned above, but it would not have the other benefits.
  
  * The plugin amounts to very little code and a straightforward implementation. It's basically lipstick on `included` and `class_eval`.
+ 
+ * Compatible with rspec (some alternate methods are not, which is bad)
  
 (If you want to weird things up in the name of fewer lines of code, the Ruby parser will accept
 
@@ -126,7 +128,7 @@ too.)
 
 Add support for module arguments; something like
 
-    augment Shared::Pingable, :pong => false
+    incorporate Shared::Pingable, :pong => false
 
 
 ## Credits and license
